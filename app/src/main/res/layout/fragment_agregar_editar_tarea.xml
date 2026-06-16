@@ -76,7 +76,7 @@
                 android:minLines="3" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- FECHA (se toca para abrir el calendario) -->
+        <!-- cambiar fecha se toca para abrir el calendario -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutFecha"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
