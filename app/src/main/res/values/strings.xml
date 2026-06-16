@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Proyecto Bryan Laurrabaquio Ramirez</string>
+
+    <string name="lista_vacia">No hay tareas. Toca el botón + para agregar una.</string>
+    <string name="agregar_tarea">Agregar tarea</string>
+    <string name="eliminar">Eliminar</string>
+
+    <string name="nueva_tarea">Nueva tarea</string>
+    <string name="editar_tarea">Editar tarea</string>
+
+    <string name="hint_titulo">Título</string>
+    <string name="hint_materia">Materia</string>
+    <string name="hint_descripcion">Descripción</string>
+    <string name="hint_fecha">Fecha (toca para elegir)</string>
+    <string name="hint_prioridad">Prioridad</string>
+
+    <string name="prioridad_alta">Alta</string>
+    <string name="prioridad_media">Media</string>
+    <string name="prioridad_baja">Baja</string>
+
+    <string name="guardar">Guardar</string>
+    <string name="error_titulo">El título es obligatorio</string>
+    <string name="guardado_ok">Tarea guardada</string>
+</resources>

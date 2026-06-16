@@ -6,11 +6,11 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-// SQLiteOpenHelper administra la base de datos local (archivo "tareas.db")
+// administra la base de datos local
 class TareaDbHelper private constructor(context: Context) :
     SQLiteOpenHelper(context, NOMBRE_BD, null, VERSION_BD) {
 
-    // Se ejecuta UNA sola vez: crea la tabla
+    // crea la tabla
     override fun onCreate(db: SQLiteDatabase) {
         val crearTabla = """
             CREATE TABLE $TABLA (
@@ -26,30 +26,30 @@ class TareaDbHelper private constructor(context: Context) :
         db.execSQL(crearTabla)
     }
 
-    // Se ejecuta si cambias VERSION_BD: borra y recrea (suficiente para la escuela)
+    // Se ejecuta si cambias VERSION_BD: borra y recrea
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLA")
         onCreate(db)
     }
 
-    // GUARDAR (nueva tarea)
+    // guarda una nueva tarea
     fun insertar(tarea: Tarea): Long {
         return writableDatabase.insert(TABLA, null, aContentValues(tarea))
     }
 
-    // EDITAR (tarea existente)
+    //edita una tarea existente
     fun actualizar(tarea: Tarea): Int {
         return writableDatabase.update(
             TABLA, aContentValues(tarea), "$COL_ID = ?", arrayOf(tarea.id.toString())
         )
     }
 
-    // ELIMINAR
+    // elimina
     fun eliminar(id: Long): Int {
         return writableDatabase.delete(TABLA, "$COL_ID = ?", arrayOf(id.toString()))
     }
 
-    // MARCAR / DESMARCAR como completada
+    // marca y desmarca como completada
     fun cambiarCompletada(id: Long, completada: Boolean): Int {
         val valores = ContentValues().apply {
             put(COL_COMPLETADA, if (completada) 1 else 0)
@@ -57,7 +57,7 @@ class TareaDbHelper private constructor(context: Context) :
         return writableDatabase.update(TABLA, valores, "$COL_ID = ?", arrayOf(id.toString()))
     }
 
-    // LISTAR todas (pendientes primero; las más nuevas arriba)
+    // listar todas las tareas pendientes primero las más nuevas arriba
     fun obtenerTodas(): List<Tarea> {
         val lista = mutableListOf<Tarea>()
         val cursor = readableDatabase.query(
@@ -71,7 +71,7 @@ class TareaDbHelper private constructor(context: Context) :
         return lista
     }
 
-    // Traer UNA tarea por id (para editarla)
+    // Traer una tarea por id para editarla
     fun obtenerPorId(id: Long): Tarea? {
         val cursor = readableDatabase.query(
             TABLA, null, "$COL_ID = ?", arrayOf(id.toString()), null, null, null
