@@ -44,7 +44,7 @@ class TareaDbHelper private constructor(context: Context) :
         )
     }
 
-    // elimina
+    // eliminar tarea
     fun eliminar(id: Long): Int {
         return writableDatabase.delete(TABLA, "$COL_ID = ?", arrayOf(id.toString()))
     }
